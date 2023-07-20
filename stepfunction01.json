@@ -17,13 +17,13 @@
       "Parameters": {
         "QueryString.$": "$.query.Body",
         "QueryExecutionContext": {
-          "Catalog": "AwsDataCatalog",
+          "Catalog": "catalog_name",
           "Database": "database_name"
         },
         "ResultConfiguration": {
           "OutputLocation": "s3://s3_bucket_name/"
         },
-        "WorkGroup": "primary"
+        "WorkGroup": "workgroup_name"
       },
       "End": true
     }

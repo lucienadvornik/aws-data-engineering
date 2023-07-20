@@ -1,0 +1,22 @@
+StartAt: Get query
+States:
+  Get query:
+    Type: Task
+    Next: Run query
+    Parameters:
+      Bucket: input_s3_bucket_name
+      Key: key_name
+    Resource: arn:aws:states:::aws-sdk:s3:getObject
+    ResultPath: $.query
+  Run query:
+    Type: Task
+    Resource: arn:aws:states:::athena:startQueryExecution.sync
+    Parameters:
+      QueryString.$: $.query.Body
+      QueryExecutionContext:
+        Catalog: catalog_name
+        Database: database_name
+      ResultConfiguration:
+        OutputLocation: s3://s3_bucket_name/
+      WorkGroup: workgroup_name
+    End: true
