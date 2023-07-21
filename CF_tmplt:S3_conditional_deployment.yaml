@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Simple cloud formation for S3 buckets creation and 
+Description: Simple CF template for S3 buckets creation and conditional deployment
 
 Parameters:
   ProjectName:
