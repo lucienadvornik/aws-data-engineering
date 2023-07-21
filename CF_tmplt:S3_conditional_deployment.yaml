@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Simple cloud formation for S3 buckets creation and 
+
+Parameters:
+  ProjectName:
+    Type: String
+    Description: "Project name variable used for naming resources"
+    Default: "project_name"
+
+  DeploymentEnabled:
+    Type: String
+    Description: "Set to 'true' to deploy both buckets, 'false' to skip deployment."
+    Default: "true"
+    AllowedValues: ["true", "false"]
+    
+Resources:
+  Bucket01:
+    Type: "AWS::S3::Bucket"
+    Condition: DeployBucket01
+    Properties:
+      BucketName: !Sub ${ProjectName}-s3-01
+      Tags:
+        - Key: Project
+          Value: Test
+        - Key: Component
+          Value: S3bucket01
+        - Key: Stack
+          Value: !Ref AWS::StackName
+
+  Bucket02:
+    Type: "AWS::S3::Bucket"
+    Condition: DeployBucket02
+    Properties:
+      BucketName: !Sub ${ProjectName}-s3-02
+      Tags:
+        - Key: Project
+          Value: Test
+        - Key: Component
+          Value: S3bucket02
+        - Key: Stack
+          Value: !Ref AWS::StackName
+          
+Conditions:
+  DeployBucket01: !Equals [!Ref DeploymentEnabled, "true"]
+  DeployBucket02: !Equals [!Ref DeploymentEnabled, "false"]
