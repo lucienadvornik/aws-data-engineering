@@ -11,7 +11,7 @@ from datetime import datetime
 
 # API URL and API key (example for OpenWeatherMap API)
 API_URL = "https://api.openweathermap.org/data/2.5/weather" 
-API_KEY = "248891ebc2d89fefcb1a025e12e03b9f"  # Specific API key
+API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"  # Specific API key
 CITY = "Prague"  # City where we take the weather from
 # Latitude and Longitude for Prague
 LATITUDE = 50.0755
