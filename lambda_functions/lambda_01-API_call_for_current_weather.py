@@ -3,7 +3,7 @@
 ## Task: Create Lambda function with API call getting data about actual weather in Prague from OpenWeather.org
 ## https://openweathermap.org/current
 
-# import libraries
+# Import libraries
 import json
 import requests
 import pandas as pd  # Import pandas for data manipulation

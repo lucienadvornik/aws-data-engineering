@@ -1,11 +1,12 @@
-#### Lambda function test #### 
+#### LAMBDA for copy file from source S3 bucket to destination S3 bucket #### 
 
-# import libraries 
+# Import libraries 
 import boto3
 
+# Initialize S3 client
 s3_client = boto3.client('S3')
 
-# def function
+# Def function
 def lambda_handler(event, context):
     # Source bucket
     source_bucket = event['Records'][0]['s3']['bucket']['name']
