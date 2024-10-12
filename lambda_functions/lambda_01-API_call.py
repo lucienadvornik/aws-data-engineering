@@ -1,5 +1,8 @@
 #### LAMBDA for API call #### 
 
+## Task: Create Lambda function with API call getting data about actual weather in Prague from OpenWeather.org
+## https://openweathermap.org/current
+
 # import libraries
 import json
 import requests
@@ -7,7 +10,7 @@ import pandas as pd  # Import pandas for data manipulation
 from datetime import datetime
 
 # API URL and API key (example for OpenWeatherMap API)
-API_URL = "https://api.openweathermap.org/data/3.0/onecall" 
+API_URL = "https://api.openweathermap.org/data/2.5/weather" 
 API_KEY = "248891ebc2d89fefcb1a025e12e03b9f"  # Specific API key
 CITY = "Prague"  # City where we take the weather from
 # Latitude and Longitude for Prague
@@ -18,18 +21,21 @@ LONGITUDE = 14.4378
 def lambda_handler():
     # 1. Download data from the API
     # Construct the request URL with latitude, longitude, and API key
-    response = requests.get(f"{API_URL}?lat={LATITUDE}&lon={LONGITUDE}&exclude=hourly,daily&appid={API_KEY}")
+    response = requests.get(f"{API_URL}?lat={LATITUDE}&lon={LONGITUDE}&exclude=hourly,daily&appid={API_KEY}&units=metric")
     
     # 2. If the request was successful, process the data
     if response.status_code == 200:  # Check if the response was successful
         weather_data = response.json()  # Convert response to JSON
         
-        # 3. Extract useful information
+        # 3A. Print the raw JSON data returnet by the API
+        print(json.dumps(weather_data, indent=4)) # Indent for formatting JSON - 4 gaps between
+
+        # 3B. Extract useful information
         transformed_data = {
-            "city": "Prague",  # City name
-            "temperature": weather_data["current"]["temp"],  # Current temperature
-            "weather": weather_data["current"]["weather"][0]["description"],  # Weather description
-            "timestamp": datetime.now().isoformat()  # Get current timestamp
+            "City": "Prague",  # City name
+            "Temperature in °C": weather_data["main"]["temp"],  # Current temperature
+            "Weather": weather_data["weather"][0]["description"],  # Weather description
+            "timestamp": datetime.now()  # Get current timestamp
         }
         
         # 4. Create a DataFrame to store the data
