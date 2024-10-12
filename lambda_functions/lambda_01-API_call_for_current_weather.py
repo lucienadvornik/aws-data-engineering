@@ -51,3 +51,8 @@ def lambda_handler():
 # To run the function locally
 if __name__ == "__main__":
     lambda_handler()  # Call the function to execute
+
+
+# Results:
+# City  Temperature in °C     Weather                  timestamp
+# Prague              11.87  few clouds 2024-10-12 16:12:00.170817
