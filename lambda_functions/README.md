@@ -6,7 +6,7 @@ This folder is dedicated for Lambda functions build by me as a part of my portfo
 ## Lambda 01: Features
 - **API call**: Lambda calls OpenWeatherMap API
 - **Data transformation**
-- **S3**: Storing data in AWS S3 bucket
+- **Output**: Current weather in Prague, Czechia
 
 ## Technologies Used
 - Python
